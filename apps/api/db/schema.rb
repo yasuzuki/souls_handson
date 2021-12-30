@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_12_30_130927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "users", force: :cascade do |t|
+    t.string "uid", null: false
+    t.string "username", default: "", null: false
+    t.string "screen_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name_kanji", default: "", null: false
+    t.string "first_name_kanji", default: "", null: false
+    t.string "last_name_kana", default: "", null: false
+    t.string "first_name_kana", default: "", null: false
+    t.string "email", null: false
+    t.string "tel", default: "", null: false
+    t.string "icon_url", default: "", null: false
+    t.string "birthday", default: "", null: false
+    t.string "gender", default: "", null: false
+    t.string "lang", default: "ja", null: false
+    t.string "category", default: "user", null: false
+    t.integer "roles_mask", default: 1, null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["is_deleted"], name: "index_users_on_is_deleted"
+    t.index ["screen_name"], name: "index_users_on_screen_name"
+    t.index ["uid"], name: "index_users_on_uid"
+    t.index ["username"], name: "index_users_on_username"
+  end
 
 end
